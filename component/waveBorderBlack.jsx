@@ -58,11 +58,11 @@ export default function WaveBorderBlack() {
         <div className='w-[280px] aspect-square bg-red-500'>
           <img className='w-full h-full object-center object-cover' src="/paisa.jpeg" alt="" />
         </div>
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center text-white'>
           <div className='flex items-center justify-center'>
-            <h1 className='second text-xl'>Made With</h1>
+            <h1 className='second text-xl text-white'>Made With</h1>
             <img className='w-[30px] h-[30px] object-center object-cover ' src="/heart.gif" alt="" />
-            <h1 className='second text-xl pl-1.5'>By TyBCS</h1>
+            <h1 className='second text-xl pl-1.5 text-white'>By TyBCS</h1>
           </div>
         </div>
       </div>
