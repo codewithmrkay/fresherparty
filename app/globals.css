@@ -1,3 +1,16 @@
+
+ @font-face {
+  font-family: first;
+  src: url('/font/first.ttf');
+ }
+ @font-face {
+  font-family: second;
+  src: url('/font/second.ttf');
+ }
+ @font-face {
+  font-family: third;
+  src: url('/font/third.ttf');
+ }
 @import "tailwindcss";
 
 :root {
@@ -20,7 +33,16 @@
 }
 
 body {
-  background: var(--background);
+  background: black;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.first{
+  font-family: first;
+}
+.second{
+  font-family: second;
+}
+.third{
+  font-family: third;
 }
