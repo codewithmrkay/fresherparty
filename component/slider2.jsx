@@ -3,12 +3,15 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export default function FullScreenSlider2() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const maxIndex = 2;
+    const maxIndex = 5;
     const audioRef = useRef(null)
 
     // index 0 has no music, 1–4 map to each card’s loop track
     const audioSources = [
         null,
+        '/audio/game1.mp3',
+        '/audio/game2.mp3',
+        '/audio/game3.mp3',
         '/audio/mrfresher.mp3',
         '/audio/msfresher.mp3'
     ]
@@ -53,6 +56,30 @@ export default function FullScreenSlider2() {
                     </div>
                 </div>
 
+                {/* Card 1 (Slide 1) */}
+                <div className=" flex-shrink-0 w-screen h-screen flex items-center justify-center">
+                    <div className="p-10 flex flex-col items-center justify-center text-black">
+                        {/* <h2 className="second text-4xl">Mr Fresher</h2> */}
+                        <h2 className="first font-medium text-8xl">Play Game</h2>
+                        <img className='w-[280px] aspect-square object-center object-contain' src="/game.gif" alt="" />
+                    </div>
+                </div>
+                {/* Card 1 (Slide 1) */}
+                <div className=" flex-shrink-0 w-screen h-screen flex items-center justify-center">
+                    <div className="p-10 flex flex-col items-center justify-center text-black">
+                        {/* <h2 className="second text-4xl">Mr Fresher</h2> */}
+                        <h2 className="first font-medium text-8xl">To Get</h2>
+                        <img className='w-[280px] aspect-square object-center object-contain' src="/game2.gif" alt="" />
+                    </div>
+                </div>
+                {/* Card 1 (Slide 1) */}
+                <div className=" flex-shrink-0 w-screen h-screen flex items-center justify-center">
+                    <div className="p-10 flex flex-col items-center justify-center text-black">
+                        {/* <h2 className="second text-4xl">Mr Fresher</h2> */}
+                        <h2 className="first font-medium text-8xl">Crown</h2>
+                        <img className='w-[280px] aspect-square object-center object-contain' src="/game3.gif" alt="" />
+                    </div>
+                </div>
                 {/* Card 1 (Slide 1) */}
                 <div className=" flex-shrink-0 w-screen h-screen flex items-center justify-center">
                     <div className="p-10 flex flex-col items-center justify-center text-black">
