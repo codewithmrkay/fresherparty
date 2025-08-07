@@ -5,6 +5,8 @@ export default function FullScreenSlider2() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const maxIndex = 5;
     const audioRef = useRef(null)
+const containerRef = useRef(null)
+const [isInView, setIsInView] = useState(false)
 
     // index 0 has no music, 1–4 map to each card’s loop track
     const audioSources = [
@@ -15,6 +17,14 @@ export default function FullScreenSlider2() {
         '/audio/mrfresher.mp3',
         '/audio/msfresher.mp3'
     ]
+useEffect(() => {
+  const obs = new IntersectionObserver(
+    ([entry]) => setIsInView(entry.isIntersecting),
+    { threshold: 0.5 }
+  )
+  if (containerRef.current) obs.observe(containerRef.current)
+  return () => obs.disconnect()
+}, [])
 
    // whenever slide changes, stop old audio & start new loop
     useEffect(() => {
@@ -34,11 +44,34 @@ export default function FullScreenSlider2() {
             if (audioRef.current) audioRef.current.pause()
         }
     }, [currentIndex])
+
+    useEffect(() => {
+  // always stop any playing audio first
+  if (audioRef.current) {
+    audioRef.current.pause()
+    audioRef.current = null
+  }
+
+  // if we're scrolled out, don’t restart
+ if (!isInView) return
+
+  const src = audioSources[currentIndex]
+  if (src) {
+    const audio = new Audio(src)
+    audio.loop = true
+    audio.play()
+    audioRef.current = audio
+  }
+
+  return () => {
+    if (audioRef.current) audioRef.current.pause()
+  }
+}, [currentIndex, isInView])
     const goNext = () => setCurrentIndex((idx) => Math.min(idx + 1, maxIndex));
     const goPrev = () => setCurrentIndex((idx) => Math.max(idx - 1, 0));
 
     return (
-        <div
+        <div ref={containerRef}
             className="relative w-screen h-screen overflow-hidden">
 
             {/* Sliding Track */}
@@ -105,16 +138,16 @@ export default function FullScreenSlider2() {
             <button
                 onClick={goPrev}
                 disabled={currentIndex === 0}
-                className="absolute left-5 bottom-15 -translate-y-1/2 text-5xl text-black disabled:opacity-30"
+                className="second py-0.5 px-2 rounded-2xl absolute left-5 bottom-15 -translate-y-1/2 text-xl bg-white text-black disabled:opacity-30"
             >
-                &lt;
+                Go Back
             </button>
             <button
                 onClick={goNext}
                 disabled={currentIndex === maxIndex}
-                className="absolute right-5 bottom-15 -translate-y-1/2 text-5xl text-black disabled:opacity-30"
+                className="second py-0.5 px-2 rounded-2xl absolute right-5 bottom-15 -translate-y-1/2 text-xl bg-white text-black disabled:opacity-30"
             >
-                &gt;
+                Play Music
             </button>
         </div>
     );
